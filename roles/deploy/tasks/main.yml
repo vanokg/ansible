@@ -1,0 +1,7 @@
+---
+  - name: Update site
+    git:
+      repo: https://github.com/vanokg/site.git
+      dest: /var/www/html/{{ domain }}
+      accept_hostkey: yes
+      force: yes

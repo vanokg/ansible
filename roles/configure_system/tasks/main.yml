@@ -1,0 +1,25 @@
+---
+
+  - name: Set authorized key taken from file 1
+    ansible.posix.authorized_key:
+      user: root
+      key: "{{ lookup('file', 'public_keys/key1.pub') }}"
+      state: present
+
+  - name: Set authorized key taken from file 2
+    ansible.posix.authorized_key:
+      user: root
+      state: present
+      key: "{{ lookup('file', 'public_keys/key2.pub') }}"
+
+  - name: Set fs.file-max = 1204000
+    ansible.posix.sysctl:
+      name: fs.file-max
+      value: '1204000'
+      state: present
+
+  - name: Set somaxconn = 65535
+    ansible.posix.sysctl:
+      name: net.core.somaxconn
+      value: '65535'
+      state: present
