@@ -5,6 +5,11 @@
       cache_valid_time: 3600
 
   - name: "install nginx,wget,zsh"
-    apt:
-      name: ['nginx','wget','zsh']
-      state: latest
+    tags: packages
+    apt: name="{{ packages }}"
+    vars:
+     packages:
+      - nginx
+      - wget
+      - zsh
+     state: present
